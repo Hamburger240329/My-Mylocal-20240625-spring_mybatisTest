@@ -6,12 +6,14 @@ import com.ham1142.mybatis.dto.BoardDto;
 
 public interface BoardDao {
 	
-	public void writeDao(String bid, String bname, String btitle, String Bcontent);
+	public void writeDao(String bid, String bname, String btitle, String Bcontent); // 글쓰기
 	
-	public ArrayList<BoardDto> boardlistDao();
-
 	public ArrayList<BoardDto> boardListDao();
 	
-	
+	public BoardDto contentViewDao(String bnum); // 글 번호로 내용 조회
 
+	public void modifyDao(String title, String bcontent, String bnum);//글 수정
+	
+	
+	
 }

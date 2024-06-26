@@ -18,6 +18,6 @@ public interface MemberDao {
 	
 	public int deleteMemberDao(String mid); // 회원 탈퇴(회원 삭제) 메소드
 	
-	
+	public int checkIdDao(String mid); // 아이디 존재 여부 체크 메소드
 	
 }

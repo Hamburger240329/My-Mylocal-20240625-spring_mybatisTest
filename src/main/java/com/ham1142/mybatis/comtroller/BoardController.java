@@ -67,10 +67,53 @@ public class BoardController {
 		}
 		
 		@RequestMapping (value = "/contentView")
-		public String contentView(HttpServletRequest request, Model model) {
+		public String contentView(HttpServletRequest request, Model model, HttpSession session) {
 		
+	 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+	 		BoardDto boardDto = boardDao.contentViewDao(request.getParameter("bnum"));
 			
-			
+	 		
+	 		String sessionid = (String) session.getAttribute("sessionid"); // 세션 아이디 가져오기
+
+//	 		System.out.println("세션아이디 :" + sessionid);
+	 		
+	 		int idCheck = 0; // flag값 플래그 값(0아니면 1로 확인되는 값)
+	 		
+	 		if((sessionid != null) &&  (boardDto.getBid().equals(sessionid))) { // 현재 로그인한 아이디와 글쓴 아이디가 동일
+	 			idCheck = 1;
+	 		}
+	 		
+	 		model.addAttribute("idCheck", idCheck);
+	 		// 현재 로그인 한 아이디와 글쓴이 아이디가 동일하면 idCheck=1 이 되고 아니면 0
+	 		model.addAttribute("boardDto", boardDto);
+	 		
 			return "content_view";
 		}
+		
+		
+		@RequestMapping (value = "/modify")
+		public String modify(HttpServletRequest request, Model model) {
+		
+	 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+	 		BoardDto boardDto = boardDao.contentViewDao(request.getParameter("bnum"));
+			
+	 		
+	 		model.addAttribute("boardDto", boardDto);
+	 		
+			return "modify_form";
+		}
+		
+		
+		
+		
+		@RequestMapping (value = "/modifyOk")
+		public String modifyOk(HttpServletRequest request, Model model) {
+		
+	 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+	 		boardDao.modifyDao(request.getParameter("btitle"), request.getParameter("content"),request.getParameter("bnum"));
+			
+			return "redirect:list";
+		}
+		
+		
 	}	
