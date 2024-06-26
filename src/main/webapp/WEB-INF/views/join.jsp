@@ -18,7 +18,6 @@
 				</form>
 			</td>
 		</tr>
-		
 	<form action="joinOk">	
 		<tr>
 			<td>아이디</td>
