@@ -106,6 +106,28 @@ public class MemberController {
 		return "memberlist";
 	}
 	
+	@RequestMapping (value = "/delete")
+	public String delete() {
+		return "delete";
+
+	}
+
+	@RequestMapping (value = "/deleteOk")
+	public String deleteOk(HttpServletRequest request, Model model) {
+		
+		String mid = request.getParameter("mid");
+		
+		MemberDao membetDao = sqlSession.getMapper(MemberDao.class);
+		int success = membetDao.deleteMemberDao(mid);
+		
+		if(success == 1) {//참이면 성공
+			return "redirect:memberlist";
+			} else { // 실패
+			model.addAttribute("deleteFail", "존재하지 않는 회원 입니다. 다시 확인하세요.");
+			return "delete";
+		}
 	
+
+	}
 	
 }
