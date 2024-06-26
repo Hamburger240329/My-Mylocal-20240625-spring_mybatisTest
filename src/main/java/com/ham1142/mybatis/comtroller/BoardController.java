@@ -1,5 +1,7 @@
 package com.ham1142.mybatis.comtroller;
 
+import java.util.ArrayList;
+
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ham1142.mybatis.dao.BoardDao;
 import com.ham1142.mybatis.dao.MemberDao;
+import com.ham1142.mybatis.dto.BoardDto;
 import com.ham1142.mybatis.dto.MemberDto;
 
 @Controller
@@ -49,12 +52,25 @@ public class BoardController {
  		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
  		boardDao.writeDao(request.getParameter("bid"), request.getParameter("bname"),request.getParameter("btitle"),request.getParameter("bcontent"));
 			
+			return "redirect:list";
+		}
+
+		@RequestMapping (value = "/list")
+		public String list(HttpServletRequest request, Model model) {
 			
-			return"redirect:list";
+	 		BoardDao boardDao = sqlSession.getMapper(BoardDao.class);
+	 		ArrayList<BoardDto> boardDtos = boardDao.boardListDao();
 			
+	 		model.addAttribute("boardList", boardDtos);
+	 		
+			return "boardlist";			
+		}
 		
+		@RequestMapping (value = "/contentView")
+		public String contentView(HttpServletRequest request, Model model) {
 		
-		
-	}
-	
-}
+			
+			
+			return "content_view";
+		}
+	}	

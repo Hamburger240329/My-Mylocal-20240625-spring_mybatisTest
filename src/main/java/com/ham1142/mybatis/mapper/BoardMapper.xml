@@ -11,6 +11,9 @@
 		INSERT INTO springboard(bid, bname, btitle, bcontent, bhit) VALUES (#{param1},#{param2},#{param3},#{param4}, 0)
 	</insert>
 
-
+	<select id="boardListDao" resultType="com.ham1142.mybatis.dto.BoardDto">
+		SELECT * FROM springboard ORDER BY bnum DESC
+	
+	</select>
 
 </mapper>

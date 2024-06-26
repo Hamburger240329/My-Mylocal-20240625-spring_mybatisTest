@@ -126,8 +126,16 @@ public class MemberController {
 			model.addAttribute("deleteFail", "존재하지 않는 회원 입니다. 다시 확인하세요.");
 			return "delete";
 		}
-	
 
 	}
+
+	@RequestMapping (value = "/logout")
+	public String logout(HttpSession session) {
+		
+		session.invalidate(); // 로그아웃 -> 세션삭제
+		
+		return "redirect:login";
+	}
+
 	
 }
