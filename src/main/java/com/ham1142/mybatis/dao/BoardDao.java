@@ -14,6 +14,6 @@ public interface BoardDao {
 
 	public void modifyDao(String title, String bcontent, String bnum);//글 수정
 	
-	
+	public void uphitDao(String bnum); // 조회수 증가
 	
 }
