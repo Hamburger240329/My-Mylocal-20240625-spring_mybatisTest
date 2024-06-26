@@ -10,7 +10,7 @@
 	<h2>글쓰기</h2>
 	<hr>
 	<form action="writeOk">
-		<input type="hidden" name="mid" value="${mid}">
+		<input type="hidden" name="bid" value="${mid}">
 		<input type="hidden" name="bname" value="${mname}">
 		<table border="1" cellspacing="0" cellpadding="0" width="600">
 			<tr>
