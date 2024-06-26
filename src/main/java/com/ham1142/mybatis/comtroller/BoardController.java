@@ -133,5 +133,15 @@ public class BoardController {
 			return "content_view";
 		}
 		
+		@RequestMapping (value = "deleteview")
+		public String deleteview(HttpServletRequest request, Model model) {
+			
+			BoardDao boardDao = sqlSession.getMapper(BoardDao. class);
+			boardDao.deleteviewDao(request.getParameter("bnum"));
+			
+			model.addAttribute("boardDao", boardDao);
+			
+			return "redirect:list";
+		}
 		
 	}	

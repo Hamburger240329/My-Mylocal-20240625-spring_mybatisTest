@@ -16,4 +16,6 @@ public interface BoardDao {
 	
 	public void uphitDao(String bnum); // 조회수 증가
 	
+	public void deleteviewDao(String bnum); // 글 삭제 기능 추가
+	
 }
