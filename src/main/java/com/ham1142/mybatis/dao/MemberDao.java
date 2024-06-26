@@ -18,4 +18,6 @@ public interface MemberDao {
 	
 	public int deleteMemberDao(String mid); // 회원 탈퇴(회원 삭제) 메소드
 	
+	
+	
 }
